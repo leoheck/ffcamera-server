@@ -1,0 +1,12 @@
+[Unit]
+Description = FFMPEG streaming server service
+
+[Service]
+User = pi
+ExecStart = /usr/bin/ffserver
+RemainAfterExit = no
+Restart = on-failure
+RestartSec = 5s
+
+[Install]
+WantedBy = multi-user.target
