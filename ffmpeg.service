@@ -5,7 +5,7 @@ After = network.target network-online.target ffserver.servic
 
 [Service]
 User = pi
-ExecStart = /usr/bin/ffmpeg -input_format mjpeg -video_size 1280x720 -framerate 5 -i /dev/video0 -c:v copy -nostats -loglevel panic http://localhost:8090/stream.ffm
+ExecStart = /usr/bin/ffmpeg -input_format mjpeg -video_size 640x480 -framerate 5 -i /dev/video0 -c:v copy -nostats -loglevel panic http://localhost:8090/stream.ffm
 RemainAfterExit = no
 Restart = on-failure
 RestartSec = 5s
