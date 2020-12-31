@@ -9,4 +9,3 @@ Static images URL
 ```
 <hotname_or_ip>:8090/picture.jpg
 ```
-
