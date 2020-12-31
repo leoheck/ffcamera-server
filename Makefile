@@ -9,16 +9,18 @@ install: set_resolution
 	sudo cp -f ffserver.service /etc/systemd/system/
 	#sudo mv /etc/ffserver.conf /etc/ffserver.conf.bpk
 	sudo cp -f ffserver.conf /etc/
-	sudo systemctl enable ffmpeg.service
 	sudo systemctl enable ffserver.service
-	sudo systemctl restart ffmpeg.service
 	sudo systemctl restart ffserver.service
+	sleep 4
+	sudo systemctl enable ffmpeg.service
+	sudo systemctl restart ffmpeg.service
 
 reload:
 
 	sudo systemctl daemon-reload
-	sudo systemctl restart ffmpeg.service
 	sudo systemctl restart ffserver.service
+	sleep 5
+	sudo systemctl restart ffmpeg.service
 
 remove:
 uninstall:
