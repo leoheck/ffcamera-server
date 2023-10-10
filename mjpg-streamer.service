@@ -1,0 +1,14 @@
+[Unit]
+Description = MJPEG Streamer service
+Wants = network-online.target
+After = network.target network-online.target
+
+[Service]
+User = pi
+ExecStart = /usr/local/bin/mjpg_streamer -i "/usr/local/lib/mjpg-streamer/input_uvc.so -n -f 10 -r 1280x720" -o "/usr/local/lib/mjpg-streamer/output_http.so -w ./www"
+RemainAfterExit = no
+Restart = on-failure
+RestartSec = 5s
+
+[Install]
+WantedBy=multi-user.target

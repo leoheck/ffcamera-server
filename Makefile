@@ -1,33 +1,12 @@
-resolution = 640x480
-resolution = 640x480
 
-#stream = 640x480
-#image = 1024x768
-
-install: set_resolution
-	sudo cp -f ffmpeg.service /etc/systemd/system/
-	sudo cp -f ffserver.service /etc/systemd/system/
-	#sudo mv /etc/ffserver.conf /etc/ffserver.conf.bpk
-	sudo cp -f ffserver.conf /etc/
-	sudo systemctl enable ffserver.service
-	sudo systemctl restart ffserver.service
-	sleep 4
-	sudo systemctl enable ffmpeg.service
-	sudo systemctl restart ffmpeg.service
-
-reload:
-
+install:
+	sudo cp -f mjpg-streamer.service /etc/systemd/system/
+	sudo sed -i "s/^User.*/User = ${USER}/g" /etc/systemd/system/mjpg-streamer.service
 	sudo systemctl daemon-reload
-	sudo systemctl restart ffserver.service
-	sleep 5
-	sudo systemctl restart ffmpeg.service
+	sudo systemctl enable mjpg-streamer.service
+	sudo systemctl restart mjpg-streamer.service
 
 remove:
 uninstall:
-	sudo rm -f ffmpeg.service /etc/systemd/system/
-	sudo rm -f ffserver.service /etc/systemd/system/
-	sudo systemctl disable ffmpeg.service
-	sudo systemctl disable ffserver.service
-
-set_resolution:
-	sed -i "s/640x480/$(resolution)/g" *
+	sudo rm -f /etc/systemd/system/mjpg-streamer.service
+	sudo systemctl disable mjpg-streamer.service
